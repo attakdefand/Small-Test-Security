@@ -14,6 +14,13 @@ A comprehensive API testing framework built in Rust for testing REST APIs, Graph
 - ✅ Property-Based Testing
 - ✅ Snapshot Testing
 - ✅ Automated Reporting
+- ✅ Distributed Load Testing
+- ✅ Advanced Security Scanning
+- ✅ API Contract Evolution
+- ✅ Advanced Monitoring & Alerting
+- ✅ API Documentation Generation
+- ✅ Test Data Management
+- ✅ Performance Profiling
 
 ## Prerequisites
 
@@ -65,6 +72,50 @@ cargo test -- --ignored
 ./run-extended-tests.ps1
 ```
 
+### Advanced Comprehensive Tests
+The framework includes 7 advanced testing extensions:
+
+1. **Distributed Load Testing**
+   ```bash
+   cargo test --features performance-testing distributed_load_test_simulation -- --ignored
+   ```
+
+2. **Advanced Security Scanning**
+   ```bash
+   cargo test --features security-testing advanced_security_vulnerability_scan -- --ignored
+   ```
+
+3. **API Contract Evolution**
+   ```bash
+   cargo test api_contract_backward_compatibility_test -- --ignored
+   ```
+
+4. **Advanced Monitoring & Alerting**
+   ```bash
+   cargo test --features monitoring advanced_api_monitoring_and_alerting -- --ignored
+   ```
+
+5. **Advanced API Documentation**
+   ```bash
+   cargo test advanced_api_documentation_generation -- --ignored
+   ```
+
+6. **Advanced Test Data Management**
+   ```bash
+   cargo test advanced_test_data_management_system -- --ignored
+   ```
+
+7. **Advanced Performance Profiling**
+   ```bash
+   cargo test --features performance-testing advanced_api_performance_profiling -- --ignored
+   ```
+
+### Run All Advanced Tests
+```bash
+# Run all advanced tests with all features
+cargo test --features all -- --ignored
+```
+
 ### View Results
 ```bash
 # View test results dashboard
@@ -88,6 +139,10 @@ super-test-types-rust/
 ├── docs-test-types/         # Documentation
 └── src/                     # Main library code
 ```
+
+## Comprehensive Testing Guide
+
+For detailed information about each of the 7 advanced testing extensions, see [COMPREHENSIVE-TESTING-GUIDE.md](api-test/COMPREHENSIVE-TESTING-GUIDE.md)
 
 ## Configuration
 
