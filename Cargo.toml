@@ -1,0 +1,91 @@
+[package]
+name = "super-test-types-rust"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+members = [
+  "api-test",
+  
+]
+
+[dependencies]
+anyhow = "1"
+thiserror = "1"
+rust_decimal = { version = "1", features = ["serde"] }
+rust_decimal_macros = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["rt-multi-thread","macros","test-util"] }
+axum = "0.7"
+hyper = { version = "1", features = ["client","http1","server"] }
+http = "1"
+# Need util feature for ServiceExt::oneshot
+tower = { version = "0.5", features = ["util"] }
+
+[dev-dependencies]
+proptest = "1"
+insta = { version = "1", features = ["json"] }
+assert_cmd = "2"
+assert_fs = "1"
+predicates = "3"
+# Keep testcontainers optional; the test is gated so your default build won’t try to use it.
+testcontainers = "0.22"
+tokio-postgres = "0.7"
+criterion = "0.5"
+
+[features]
+# Off by default; enables the Postgres container test.
+dbtests = []
+
+[[bin]]
+name = "cli"
+path = "src/bin/cli.rs"
+
+[[bench]]
+name = "fee_bench"
+harness = false
+
+
+
+[profile.dev]
+opt-level       = 0
+incremental     = true
+codegen-units   = 256
+debug           = 1           # Keep minimal debug info
+lto             = false
+panic           = "abort"
+overflow-checks = false
+strip           = "debuginfo"
+
+# Optimize dependencies but not your code (this is the key addition)
+[profile.dev.package."*"]
+opt-level = 3
+debug = false
+
+[profile.dev.build-override]
+opt-level = 3
+
+# ---------------------------------------------------------------------
+# Fast *rebuilds* while still shipping optimised code
+# ---------------------------------------------------------------------
+[profile.release]
+opt-level       = 3
+incremental     = true        # You have this - good for faster rebuilds
+codegen-units   = 16
+lto             = "thin"
+strip           = "symbols"
+
+[profile.release.package."*"]
+opt-level     = 1
+codegen-units = 256
+
+# ---------------------------------------------------------------------
+# Optional: Fast release for development testing
+# ---------------------------------------------------------------------
+[profile.release-dev]
+inherits = "release"
+opt-level = 2
+debug = true
+lto = false
+codegen-units = 32

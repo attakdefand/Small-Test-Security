@@ -1,0 +1,10 @@
+---
+source: api-test/tests/08_snapshot_response.rs
+expression: val
+---
+{
+  "items": [
+    "BTC-USD",
+    "ETH-USD"
+  ]
+}

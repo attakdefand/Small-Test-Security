@@ -1,0 +1,10 @@
+---
+source: api-test/tests/07_openapi_snapshot.rs
+expression: spec
+---
+{
+  "openapi": "3.0.3",
+  "paths": {
+    "/health": {}
+  }
+}

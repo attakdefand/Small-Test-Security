@@ -1,0 +1,5 @@
+---
+source: tests/http_snap.rs
+expression: json
+---
+"{\"status\":\"ok\",\"version\":\"v1\"}"

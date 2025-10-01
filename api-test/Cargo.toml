@@ -1,0 +1,55 @@
+[package]
+name = "api-test"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+# HTTP client & utils for API tests
+reqwest = { version = "0.12", features = ["json", "gzip", "brotli", "deflate", "cookies", "rustls-tls"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+http = "1"
+dotenvy = "0.15"
+chrono = { version = "0.4", features = ["clock"] }
+jsonwebtoken = "9"
+hmac = "0.12"
+sha2 = "0.10"
+rand = "0.8"
+uuid = { version = "1", features = ["v4"] }
+regex = "1"
+
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "time", "net"] }
+insta = { version = "1", features = ["json"] }
+proptest = "1"
+
+# Local stub server helpers
+axum = { version = "0.7", features = ["macros"] }
+
+# Router testing needs ServiceExt::oneshot
+tower = "0.5"
+
+# Align with workspace to avoid bollard-stubs conflict
+testcontainers = "0.22"
+testcontainers-modules = { version = "0.11", features = ["postgres", "blocking"] }
+tokio-postgres = "0.7"
+
+# Added missing dependencies
+wiremock = "0.6"
+sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "postgres"] }
+hyper = "1"
+
+# New dependencies for extensions
+tokio-tungstenite = "0.20"
+futures-util = "0.3"
+
+[dev-dependencies]
+mockall = "0.12"
+
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "time"] }
+reqwest = { version = "0.12", features = ["json"] }
+http = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
